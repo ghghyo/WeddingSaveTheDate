@@ -18,3 +18,11 @@ View your app in AI Studio: https://ai.studio/apps/drive/1VeJkU75aCXejNxeLRNKJtj
 2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
 3. Run the app:
    `npm run dev`
+
+## Deploy to GitHub Pages
+
+This is a Vite + React app, so GitHub Pages must serve the built output from `dist/` (Pages/Jekyll will not run `vite build` for you).
+
+- In `vite.config.ts`, production `base` is set to `/WeddingSaveTheDate/` (your repo name). If your repo name is different, update it.
+- Push to `main` and enable **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+- The workflow in `.github/workflows/deploy.yml` will build and deploy automatically.

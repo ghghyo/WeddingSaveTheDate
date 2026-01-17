@@ -5,6 +5,8 @@ import react from '@vitejs/plugin-react';
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
     return {
+      // GitHub Pages serves from https://<user>.github.io/<repo>/, so production assets must be prefixed.
+      base: mode === 'production' ? '/WeddingSaveTheDate/' : '/',
       server: {
         port: 3000,
         host: '0.0.0.0',

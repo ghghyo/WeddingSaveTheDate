@@ -12,7 +12,8 @@ const App: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSyncing, setIsSyncing] = useState(false);
 
-  const ACTUAL_IMAGE_SRC = "https://lh3.googleusercontent.com/d/1Tcw8IPNDS9cI3YH5zHWmcMnFEYJVGTDv";
+  // Serve from Vite's base URL so it works on GitHub Pages (/WeddingSaveTheDate/).
+  const ACTUAL_IMAGE_SRC = `${import.meta.env.BASE_URL}IMG_0232.jpg`;
 
   useEffect(() => {
     setRsvps(storageService.getRSVPs());
