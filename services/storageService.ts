@@ -18,15 +18,16 @@ export const storageService = {
   exportToCSV: (data: RSVPData[]) => {
     if (data.length === 0) return;
     
-    const headers = ['Full Name', 'Attending', 'Guests', 'Email', 'Phone', 'Dietary', 'Notes', 'Date'];
+    const headers = ['Full Name', 'Attending', 'Guests', 'Email', 'Phone', 'Children Count', 'Children Ages', 'Notes', 'Date'];
     const rows = data.map(r => [
       r.fullName,
       r.attendance,
       r.guestCount,
       r.email,
       r.phone,
-      r.dietaryRestrictions.replace(/,/g, ';'),
-      r.notes.replace(/,/g, ';'),
+      (r.childrenCount ?? '').toString().replace(/,/g, ';') || 'N/A',
+      (r.childrenAges || '').replace(/,/g, ';'),
+      (r.notes || '').replace(/,/g, ';'),
       r.submittedAt
     ]);
 

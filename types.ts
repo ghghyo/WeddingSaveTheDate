@@ -11,7 +11,8 @@ export interface RSVPData {
   guestCount: number;
   email: string;
   phone: string;
-  dietaryRestrictions: string;
+  childrenCount: number | null;
+  childrenAges: string;
   notes: string;
   submittedAt: string;
 }

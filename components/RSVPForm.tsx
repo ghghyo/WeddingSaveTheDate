@@ -13,7 +13,8 @@ const RSVPForm: React.FC<Props> = ({ onSubmit }) => {
     guestCount: 1,
     email: '',
     phone: '',
-    dietaryRestrictions: '',
+    childrenCount: null,
+    childrenAges: '',
     notes: ''
   });
 
@@ -58,7 +59,9 @@ const RSVPForm: React.FC<Props> = ({ onSubmit }) => {
                   setFormData({ 
                     ...formData, 
                     attendance: val,
-                    guestCount: val === AttendanceStatus.NO ? 0 : formData.guestCount
+                    guestCount: val === AttendanceStatus.NO ? 0 : formData.guestCount,
+                    childrenCount: val === AttendanceStatus.NO ? null : formData.childrenCount,
+                    childrenAges: val === AttendanceStatus.NO ? '' : formData.childrenAges,
                   });
                 }}
               >
@@ -109,14 +112,54 @@ const RSVPForm: React.FC<Props> = ({ onSubmit }) => {
           </div>
 
           <div>
-            <label className={labelClasses}>Dietary Requirements</label>
-            <textarea
-              rows={2}
-              className={inputClasses}
-              value={formData.dietaryRestrictions}
-              onChange={e => setFormData({ ...formData, dietaryRestrictions: e.target.value })}
-              placeholder="Allergies, vegetarian, etc."
-            />
+            <label className={labelClasses}>Children</label>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div>
+                <label className="block text-[10px] font-bold text-stone-500 uppercase tracking-[0.3em] mb-2">
+                  Number of children
+                </label>
+                <select
+                  className={inputClasses}
+                  value={formData.childrenCount === null ? 'NA' : String(formData.childrenCount)}
+                  onChange={e => {
+                    const raw = e.target.value;
+                    const nextCount = raw === 'NA' ? null : parseInt(raw, 10);
+                    setFormData({
+                      ...formData,
+                      childrenCount: Number.isFinite(nextCount as any) ? (nextCount as number) : null,
+                      childrenAges: !nextCount ? '' : formData.childrenAges,
+                    });
+                  }}
+                >
+                  <option value="NA">N/A</option>
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10+</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-[10px] font-bold text-stone-500 uppercase tracking-[0.3em] mb-2">
+                  Ages (comma-separated)
+                </label>
+                <input
+                  type="text"
+                  className={inputClasses}
+                  disabled={!formData.childrenCount}
+                  value={formData.childrenAges}
+                  onChange={e => setFormData({ ...formData, childrenAges: e.target.value })}
+                  placeholder="e.g. 2, 5, 8"
+                />
+              </div>
+            </div>
           </div>
 
           <div>

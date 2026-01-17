@@ -73,7 +73,7 @@ const App: React.FC = () => {
             <div className="relative max-w-4xl mx-auto group">
               <div className="absolute -inset-1 bg-stone-200 rounded-[2rem] blur opacity-20 transition duration-1000"></div>
               <div className="relative overflow-hidden rounded-[1.8rem] shadow-2xl bg-white ring-1 ring-stone-200/50">
-                <img 
+                <img
                   src={ACTUAL_IMAGE_SRC}
                   alt="Youssef and Hajer Wedding Save the Date"
                   className="w-full h-auto object-contain block mx-auto"

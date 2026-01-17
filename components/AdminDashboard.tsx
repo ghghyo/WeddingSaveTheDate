@@ -97,7 +97,7 @@ const AdminDashboard: React.FC<Props> = ({ rsvps }) => {
               <th className="px-6 py-4 font-semibold">Status</th>
               <th className="px-6 py-4 font-semibold">Count</th>
               <th className="px-6 py-4 font-semibold">Contact</th>
-              <th className="px-6 py-4 font-semibold">Dietary/Notes</th>
+              <th className="px-6 py-4 font-semibold">Children/Notes</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-100">
@@ -125,7 +125,15 @@ const AdminDashboard: React.FC<Props> = ({ rsvps }) => {
                     <div className="text-xs text-slate-500">{r.phone}</div>
                   </td>
                   <td className="px-6 py-4 text-sm text-slate-600 max-w-xs truncate">
-                    {r.dietaryRestrictions || r.notes || '-'}
+                    {(() => {
+                      const count = (r as any).childrenCount ?? null;
+                      const ages = (r.childrenAges || '').trim();
+                      const notes = (r.notes || '').trim();
+                      const childrenPart =
+                        count === null ? 'N/A' : `Count: ${count}${ages ? ` (Ages: ${ages})` : ''}`;
+                      const combined = [childrenPart, notes ? `Notes: ${notes}` : ''].filter(Boolean).join(' • ');
+                      return combined || '-';
+                    })()}
                   </td>
                 </tr>
               ))
