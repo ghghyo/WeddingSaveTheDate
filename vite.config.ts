@@ -5,8 +5,9 @@ import react from '@vitejs/plugin-react';
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
     return {
-      // GitHub Pages serves from https://<user>.github.io/<repo>/, so production assets must be prefixed.
-      base: mode === 'production' ? '/WeddingSaveTheDate/' : '/',
+      // With a custom domain on GitHub Pages, the site is served from the domain root.
+      // If you remove the custom domain and go back to /<repo>/, set this back to '/WeddingSaveTheDate/'.
+      base: mode === 'production' ? '/' : '/',
       server: {
         port: 3000,
         host: '0.0.0.0',
