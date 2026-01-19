@@ -169,7 +169,7 @@ const RSVPForm: React.FC<Props> = ({ onSubmit }) => {
               className={inputClasses}
               value={formData.notes}
               onChange={e => setFormData({ ...formData, notes: e.target.value })}
-              placeholder="Song requests or a sweet message..."
+              placeholder="Leave a sweet message..."
             />
           </div>
         </div>
