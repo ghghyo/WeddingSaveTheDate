@@ -121,7 +121,15 @@ const App: React.FC = () => {
                 <div className="hidden md:block w-px h-12 bg-stone-200" />
                 <div className="text-center">
                   <p className="text-[10px] uppercase tracking-[0.3em] text-stone-400 mb-2">The Venue</p>
-                  <p className="text-stone-800 font-serif text-xl">334 S Post RD, West Windsor Township, NJ 08550</p>
+                  <a
+                    href="https://maps.app.goo.gl/AxocnyNss7NEGtnZ8?g_st=ic"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-stone-800 font-serif text-xl hover:text-[#556b2f] transition-colors"
+                  >
+                    The Boathouse at Mercer Lake
+                  </a>
+                  <p className="mt-1 text-stone-500 text-sm">334 S Post RD, West Windsor Township, NJ 08550</p>
                 </div>
               </div>
             </footer>
