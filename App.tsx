@@ -6,6 +6,29 @@ import { RSVPData, FormData } from './types';
 import { storageService } from './services/storageService';
 import { sheetService } from './services/sheetService';
 
+const accommodations = [
+  {
+    name: 'Hyatt Regency Princeton',
+    description: 'A great full-service option for guests who want a slightly more upscale stay.',
+    href: 'https://www.google.com/maps/search/?api=1&query=Hyatt+Regency+Princeton+102+Carnegie+Center+Dr+Princeton+NJ+08540'
+  },
+  {
+    name: 'Hyatt Place Princeton',
+    description: 'A convenient, comfortable option that works well for most guests.',
+    href: 'https://www.google.com/maps/search/?api=1&query=Hyatt+Place+Princeton+3565+US+Highway+1+Princeton+NJ+08540'
+  },
+  {
+    name: 'Hilton Garden Inn Princeton Lawrenceville',
+    description: 'Another nearby option with easy access to the venue.',
+    href: 'https://www.hilton.com/en/hotels/ewrplgi-hilton-garden-inn-princeton-lawrenceville/'
+  },
+  {
+    name: 'Homewood Suites by Hilton Hamilton',
+    description: 'A great choice for families or guests staying a little longer.',
+    href: 'https://www.google.com/maps/search/?api=1&query=Homewood+Suites+by+Hilton+Hamilton+960+US+Highway+130+Hamilton+NJ+08690'
+  }
+] as const;
+
 const App: React.FC = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [rsvps, setRsvps] = useState<RSVPData[]>([]);
@@ -110,6 +133,51 @@ const App: React.FC = () => {
                 <RSVPForm onSubmit={handleRSVPSubmit} />
               </div>
             )}
+
+            <section className="max-w-5xl mx-auto bg-white border border-stone-100 rounded-[2rem] shadow-sm p-8 md:p-12 space-y-8">
+              <div className="max-w-3xl space-y-4">
+                <p className="text-[10px] uppercase tracking-[0.3em] text-stone-400">Accommodations</p>
+                <h2 className="text-3xl md:text-4xl font-serif text-stone-900">Nearby places to stay</h2>
+                <p className="text-stone-600 leading-7">
+                  For guests traveling in, here are a few nearby hotel options close to{' '}
+                  <a
+                    href="https://maps.app.goo.gl/AxocnyNss7NEGtnZ8?g_st=ic"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#556b2f] hover:text-[#3d4d21] transition-colors"
+                  >
+                    The Boathouse at Mercer Lake
+                  </a>
+                  . We recommend booking early, as availability may change closer to the wedding date.
+                </p>
+              </div>
+
+              <div className="grid gap-4 md:grid-cols-2">
+                {accommodations.map((hotel) => (
+                  <a
+                    key={hotel.name}
+                    href={hotel.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group rounded-[1.5rem] border border-stone-200 bg-stone-50/60 p-6 transition-all hover:-translate-y-0.5 hover:border-[#556b2f]/40 hover:bg-white hover:shadow-md"
+                  >
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="space-y-3">
+                        <h3 className="text-xl font-serif text-stone-900 group-hover:text-[#556b2f] transition-colors">
+                          {hotel.name}
+                        </h3>
+                        <p className="text-stone-600 leading-7">{hotel.description}</p>
+                      </div>
+                      <span className="mt-1 text-[#556b2f] transition-transform group-hover:translate-x-0.5">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M7 17L17 7M17 7H9M17 7v8" />
+                        </svg>
+                      </span>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </section>
             
             <footer className="text-center py-16 space-y-8 border-t border-stone-100">
               <p className="font-cursive text-5xl text-[#556b2f]/70">Invitations to Follow</p>
