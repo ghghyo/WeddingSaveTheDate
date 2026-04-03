@@ -36,7 +36,7 @@ const App: React.FC = () => {
   const [isSyncing, setIsSyncing] = useState(false);
 
   // Serve from Vite's base URL so it works on GitHub Pages (/WeddingSaveTheDate/).
-  const ACTUAL_IMAGE_SRC = `${import.meta.env.BASE_URL}IMG_0232.jpg`;
+  const ACTUAL_IMAGE_SRC = `${import.meta.env.BASE_URL}IMG_0231.jpeg`;
 
   useEffect(() => {
     setRsvps(storageService.getRSVPs());
@@ -104,6 +104,26 @@ const App: React.FC = () => {
               </div>
             </div>
 
+            <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16 text-stone-500 max-w-4xl mx-auto">
+              <div className="text-center">
+                <p className="text-[10px] uppercase tracking-[0.3em] text-stone-400 mb-2">The Date</p>
+                <p className="text-stone-800 font-serif text-xl">May 31, 2026</p>
+              </div>
+              <div className="hidden md:block w-px h-12 bg-stone-200" />
+              <div className="text-center">
+                <p className="text-[10px] uppercase tracking-[0.3em] text-stone-400 mb-2">The Venue</p>
+                <a
+                  href="https://maps.app.goo.gl/AxocnyNss7NEGtnZ8?g_st=ic"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-stone-800 font-serif text-xl hover:text-[#556b2f] transition-colors"
+                >
+                  The Boathouse at Mercer Lake
+                </a>
+                <p className="mt-1 text-stone-500 text-sm">334 S Post RD, West Windsor Township, NJ 08550</p>
+              </div>
+            </div>
+
             {isSubmitted ? (
               <div className="max-w-2xl mx-auto bg-white border border-stone-100 p-12 rounded-3xl text-center shadow-sm space-y-4">
                 <div className="w-16 h-16 bg-stone-50 text-[#556b2f] rounded-full flex items-center justify-center mx-auto mb-4 border border-stone-100">
@@ -133,6 +153,39 @@ const App: React.FC = () => {
                 <RSVPForm onSubmit={handleRSVPSubmit} />
               </div>
             )}
+
+            <section
+              id="registry"
+              className="max-w-5xl mx-auto relative overflow-hidden rounded-[2rem] border border-stone-200/80 shadow-sm"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-[#556b2f]/[0.06] via-transparent to-stone-200/40 pointer-events-none" />
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-px bg-gradient-to-r from-transparent via-[#556b2f]/30 to-transparent" />
+              <div className="relative px-8 py-12 md:px-14 md:py-16 text-center space-y-8">
+                <p className="text-[10px] uppercase tracking-[0.3em] text-stone-400">Registry</p>
+                <h2 className="text-3xl md:text-4xl font-serif text-stone-900">A little something, if you wish</h2>
+                <div className="max-w-xl mx-auto space-y-4">
+                  <p className="text-stone-600 leading-7 text-lg font-serif italic text-stone-700/90">
+                    Your presence at our wedding is the greatest gift we could ask for.
+                  </p>
+                  <p className="text-stone-600 leading-7">
+                    If you would still like to celebrate with a gift, we have put together a registry. There is absolutely no obligation, only love and good company required.
+                  </p>
+                </div>
+                <div className="flex justify-center pt-2">
+                  <a
+                    href="https://www.myregistry.com/giftlist/hajerandyoussef"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-[#556b2f] px-8 py-3.5 text-sm font-medium tracking-wide text-white shadow-md shadow-[#556b2f]/20 transition-all hover:bg-[#3d4d21] hover:shadow-lg hover:shadow-[#556b2f]/25 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#556b2f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#fdfcf9]"
+                  >
+                    View our registry
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 17L17 7M17 7H9M17 7v8" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </section>
 
             <section className="max-w-5xl mx-auto bg-white border border-stone-100 rounded-[2rem] shadow-sm p-8 md:p-12 space-y-8">
               <div className="max-w-3xl space-y-4">
@@ -178,29 +231,6 @@ const App: React.FC = () => {
                 ))}
               </div>
             </section>
-            
-            <footer className="text-center py-16 space-y-8 border-t border-stone-100">
-              <p className="font-cursive text-5xl text-[#556b2f]/70">Invitations to Follow</p>
-              <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16 text-stone-500">
-                <div className="text-center">
-                  <p className="text-[10px] uppercase tracking-[0.3em] text-stone-400 mb-2">The Date</p>
-                  <p className="text-stone-800 font-serif text-xl">May 31, 2026</p>
-                </div>
-                <div className="hidden md:block w-px h-12 bg-stone-200" />
-                <div className="text-center">
-                  <p className="text-[10px] uppercase tracking-[0.3em] text-stone-400 mb-2">The Venue</p>
-                  <a
-                    href="https://maps.app.goo.gl/AxocnyNss7NEGtnZ8?g_st=ic"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-stone-800 font-serif text-xl hover:text-[#556b2f] transition-colors"
-                  >
-                    The Boathouse at Mercer Lake
-                  </a>
-                  <p className="mt-1 text-stone-500 text-sm">334 S Post RD, West Windsor Township, NJ 08550</p>
-                </div>
-              </div>
-            </footer>
           </div>
         ) : (
           <div className="animate-fade-in">
