@@ -1,10 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
-import RSVPForm from './components/RSVPForm';
 import AdminDashboard from './components/AdminDashboard';
-import { RSVPData, FormData } from './types';
+import { RSVPData } from './types';
 import { storageService } from './services/storageService';
-import { sheetService } from './services/sheetService';
 
 const accommodations = [
   {
@@ -32,8 +30,6 @@ const accommodations = [
 const App: React.FC = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [rsvps, setRsvps] = useState<RSVPData[]>([]);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isSyncing, setIsSyncing] = useState(false);
 
   // Serve from Vite's base URL so it works on GitHub Pages (/WeddingSaveTheDate/).
   const ACTUAL_IMAGE_SRC = `${import.meta.env.BASE_URL}IMG_0231.jpeg`;
@@ -45,26 +41,6 @@ const App: React.FC = () => {
     handleHash();
     return () => window.removeEventListener('hashchange', handleHash);
   }, []);
-
-  const handleRSVPSubmit = async (formData: FormData) => {
-    setIsSyncing(true);
-    const newRSVP: RSVPData = {
-      ...formData,
-      id: Math.random().toString(36).substr(2, 9),
-      submittedAt: new Date().toLocaleString()
-    };
-
-    // 1. Save locally for immediate dashboard update
-    storageService.saveRSVP(newRSVP);
-    setRsvps(prev => [...prev, newRSVP]);
-
-    // 2. Sync to Google Sheets
-    await sheetService.syncToGoogleSheet(newRSVP);
-
-    setIsSyncing(false);
-    setIsSubmitted(true);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
 
   return (
     <div className="min-h-screen pb-20 bg-[#fdfcf9] selection:bg-stone-200">
@@ -124,35 +100,15 @@ const App: React.FC = () => {
               </div>
             </div>
 
-            {isSubmitted ? (
-              <div className="max-w-2xl mx-auto bg-white border border-stone-100 p-12 rounded-3xl text-center shadow-sm space-y-4">
-                <div className="w-16 h-16 bg-stone-50 text-[#556b2f] rounded-full flex items-center justify-center mx-auto mb-4 border border-stone-100">
-                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <h2 className="text-3xl font-serif text-stone-900">We've got you!</h2>
-                <p className="text-stone-600">Your RSVP has been saved and synced to our list. We can't wait to see you!</p>
-                <button 
-                  onClick={() => setIsSubmitted(false)}
-                  className="mt-6 text-[#556b2f] font-medium hover:text-[#3d4d21] transition-colors"
-                >
-                  Submit another response
-                </button>
-              </div>
-            ) : (
-              <div id="rsvp-section" className="scroll-mt-24 relative">
-                {isSyncing && (
-                  <div className="absolute inset-0 z-10 bg-white/50 backdrop-blur-[2px] flex items-center justify-center rounded-[2.5rem]">
-                    <div className="flex flex-col items-center gap-3">
-                      <div className="w-8 h-8 border-4 border-stone-200 border-t-[#556b2f] rounded-full animate-spin"></div>
-                      <p className="text-sm font-medium text-stone-600">Saving your response...</p>
-                    </div>
-                  </div>
-                )}
-                <RSVPForm onSubmit={handleRSVPSubmit} />
-              </div>
-            )}
+            <div
+              id="rsvp-section"
+              className="max-w-3xl mx-auto bg-white p-10 md:p-16 rounded-[2.5rem] shadow-xl shadow-stone-200/50 border border-stone-100 text-center scroll-mt-24"
+            >
+              <h2 className="text-4xl font-serif text-stone-800">Kindly Respond</h2>
+              <p className="mt-4 text-lg text-stone-600">
+                We are at capacity, looking forward to welcoming all our guests!
+              </p>
+            </div>
 
             <section
               id="registry"
