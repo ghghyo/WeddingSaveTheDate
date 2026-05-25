@@ -33,6 +33,7 @@ const App: React.FC = () => {
 
   // Serve from Vite's base URL so it works on GitHub Pages (/WeddingSaveTheDate/).
   const ACTUAL_IMAGE_SRC = `${import.meta.env.BASE_URL}IMG_0231.jpeg`;
+  const SCHEDULE_IMAGE_SRC = `${import.meta.env.BASE_URL}schedule.png`;
 
   useEffect(() => {
     setRsvps(storageService.getRSVPs());
@@ -110,35 +111,27 @@ const App: React.FC = () => {
               </p>
             </div>
 
-            <section
-              id="registry"
-              className="max-w-5xl mx-auto relative overflow-hidden rounded-[2rem] border border-stone-200/80 shadow-sm"
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-[#556b2f]/[0.06] via-transparent to-stone-200/40 pointer-events-none" />
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-px bg-gradient-to-r from-transparent via-[#556b2f]/30 to-transparent" />
-              <div className="relative px-8 py-12 md:px-14 md:py-16 text-center space-y-8">
-                <p className="text-[10px] uppercase tracking-[0.3em] text-stone-400">Registry</p>
-                <h2 className="text-3xl md:text-4xl font-serif text-stone-900">A little something, if you wish</h2>
-                <div className="max-w-xl mx-auto space-y-4">
-                  <p className="text-stone-600 leading-7 text-lg font-serif italic text-stone-700/90">
-                    Your presence at our wedding is the greatest gift we could ask for.
-                  </p>
-                  <p className="text-stone-600 leading-7">
-                    If you would still like to celebrate with a gift, we have put together a registry. There is absolutely no obligation, only love and good company required.
-                  </p>
-                </div>
-                <div className="flex justify-center pt-2">
-                  <a
-                    href="https://www.myregistry.com/giftlist/hajerandyoussef"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 rounded-full bg-[#556b2f] px-8 py-3.5 text-sm font-medium tracking-wide text-white shadow-md shadow-[#556b2f]/20 transition-all hover:bg-[#3d4d21] hover:shadow-lg hover:shadow-[#556b2f]/25 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#556b2f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#fdfcf9]"
-                  >
-                    View our registry
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 17L17 7M17 7H9M17 7v8" />
-                    </svg>
-                  </a>
+            <section className="max-w-4xl mx-auto bg-white border border-stone-100 rounded-[2rem] shadow-sm px-8 py-10 md:px-12 md:py-12 text-center">
+              <p className="text-[10px] uppercase tracking-[0.3em] text-stone-400 mb-4">Gifts</p>
+              <p className="text-2xl md:text-3xl font-serif text-stone-900 leading-relaxed">
+                Your presence is the greatest gift. For those who wish to give, cards are warmly appreciated.
+                <span className="block mt-3 text-xl md:text-2xl text-stone-700">No boxed gifts, please.</span>
+              </p>
+            </section>
+
+            <section className="max-w-5xl mx-auto space-y-6">
+              <div className="text-center space-y-3">
+                <p className="text-[10px] uppercase tracking-[0.3em] text-stone-400">Schedule</p>
+                <h2 className="text-3xl md:text-4xl font-serif text-stone-900">Wedding Day Schedule</h2>
+              </div>
+              <div className="relative max-w-4xl mx-auto">
+                <div className="absolute -inset-1 bg-stone-200 rounded-[2rem] blur opacity-20"></div>
+                <div className="relative overflow-hidden rounded-[1.8rem] shadow-xl bg-white ring-1 ring-stone-200/50">
+                  <img
+                    src={SCHEDULE_IMAGE_SRC}
+                    alt="Wedding day schedule"
+                    className="w-full h-auto object-contain block mx-auto"
+                  />
                 </div>
               </div>
             </section>
